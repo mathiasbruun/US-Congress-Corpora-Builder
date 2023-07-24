@@ -8,12 +8,12 @@ def read_pdf_file(filename):
     senate_text = ""
     try:
         pdfFileObj = open(filename,'rb')
-        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-        num_pages = pdfReader.numPages
+        pdfReader = PyPDF2.PdfReader(pdfFileObj)
+        num_pages = len(pdfReader.pages)
         while count < num_pages:
-            pageObj = pdfReader.getPage(count)
+            pageObj = pdfReader.pages[count]
             count += 1
-            page = pageObj.extractText() 
+            page = pageObj.extract_text() 
             page = page[:page.rfind("VerDate")]
             if count == 1:
                 page = page[ page.find("House of Representatives") + 25 :]

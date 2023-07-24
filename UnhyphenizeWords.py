@@ -1,6 +1,8 @@
 import nltk
 import re
 import os
+nltk.download('words')
+nltk.download('reuters')
 
 from nltk.tokenize import RegexpTokenizer
 
