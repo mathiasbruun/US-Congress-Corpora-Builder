@@ -160,11 +160,11 @@ def main():
     for filename in os.listdir(raw_dir):
         if filename[-4:] == ".txt": # make sure not to include .DS_Store etc.
             text = ""
-            with open(raw_dir, filename, "r") as file:
+            with open(raw_dir+filename, "r") as file:
                 text = file.read()
                 for speaker, speech in convert_to_speeches(text):
                     text+=speech
-            with open(clean_dir, filename, "w") as file:
+            with open(clean_dir+filename, "w") as file:
                 file.write(text)
 
 if __name__ == "__main__":
