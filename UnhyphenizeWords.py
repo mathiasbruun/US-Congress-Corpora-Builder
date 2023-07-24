@@ -63,9 +63,10 @@ def main():
     directory = r'transcripts-txt/'
     tokenizer = RegexpTokenizer(r'(?<=[ "\:\.\?\!\)\(])[a-zA-Z]+(?=[ \:\.\?\!\)\(])')
     for filename in os.listdir(directory):
-        with open(f"transcripts-txt/{filename}", "r") as file:
-            text = file.read()
-            vocab.update(set(tokenizer.tokenize(text)))
+        if filename[-4:] == ".txt":
+            with open(f"transcripts-txt/{filename}", "r") as file:
+                text = file.read()
+                vocab.update(set(tokenizer.tokenize(text)))
     for word in list(vocab):
         vocab.remove(word)
         vocab.add(word.lower())
@@ -74,13 +75,15 @@ def main():
         text = ""
         num_deleted = 0
 
-        with open(f"transcripts-txt/{filename}", "r") as file:
-            text = file.read()
+        if filename[-4:] == ".txt":
 
-            text, num_deleted = fix_text(text)
-        with open(f"transcripts-txt/{filename}", "w") as file:
-            file.write(text)
-        print(f"Fixed {num_deleted} hyphens in file {filename}")
+            with open(f"transcripts-txt/{filename}", "r") as file:
+                text = file.read()
+
+                text, num_deleted = fix_text(text)
+            with open(f"transcripts-txt/{filename}", "w") as file:
+                file.write(text)
+            print(f"Fixed {num_deleted} hyphens in file {filename}")
         
 
 if __name__ == "__main__":

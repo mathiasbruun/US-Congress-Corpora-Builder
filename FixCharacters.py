@@ -14,12 +14,13 @@ def fix_both_text(text):
 directory = r'transcripts-txt/'
 for filename in os.listdir(directory):
     text = ""
-    with open(f"transcripts-txt/{filename}") as file:
-        text = file.read()
-    if "house" in filename:
-        pass
-        open(f"transcripts-txt/{filename}","w").write(fix_house_text(text))
-    else:
-        open(f"transcripts-txt/{filename}","w").write(fix_senate_text(text))
-    print(f"Fixed {filename}.")
+    if filename[-4:] == ".txt":
+        with open(f"transcripts-txt/{filename}") as file:
+            text = file.read()
+        if "house" in filename:
+            pass
+            open(f"transcripts-txt/{filename}","w").write(fix_house_text(text))
+        else:
+            open(f"transcripts-txt/{filename}","w").write(fix_senate_text(text))
+        print(f"Fixed {filename}.")
 
