@@ -43,7 +43,7 @@ def get_end_of_intro(page):
 
 directory = r'transcripts-pdf/'
 for filename in os.listdir(directory):
-    if filename[-4:] == ".txt":
+    if filename[-4:] == ".pdf":
         house_text, senate_text = read_pdf_file(str(directory)+filename)
         open(f"transcripts-txt/house-{filename[:len(filename)-4]}.txt","w+").write(house_text)
         open(f"transcripts-txt/senate-{filename[:len(filename)-4]}.txt","w+").write(senate_text)
