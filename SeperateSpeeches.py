@@ -155,15 +155,16 @@ def convert_to_speeches(text):
         pass
 
 def main():
-    directory = r'transcripts-txt/'
+    raw_dir = r'transcripts-txt/'
+    clean_dir = r'transcripts-txt-clean/'
     for filename in os.listdir(directory):
         if filename[-4:] == ".txt": # make sure not to include .DS_Store etc.
             text = ""
-            with open(f"transcripts-txt/{filename}", "r") as file:
+            with open(raw_dir, filename, "r") as file:
                 text = file.read()
                 for speaker, speech in convert_to_speeches(text):
                     text+=speech
-            with open(f"{filename}", "w") as file:
+            with open(clean_dir, filename}, "w") as file:
                 file.write(text)
 
 if __name__ == "__main__":
